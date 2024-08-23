@@ -14,6 +14,7 @@ buttonContainer.appendChild(resButton);
 
 resButton.addEventListener("click", () => {
     var gsize = parseInt(prompt("Enter New Grid Size (less than 100)"));
+    curSize = gsize;
     while(gsize > 100){
         gsize = parseInt(prompt("Enter New Grid Size (less than 100)"));
     }
@@ -63,3 +64,16 @@ function divArrayMaker(){
 
 divCreator(16);
 eventmaker();
+
+
+const clear = document.createElement('button');
+clear.addEventListener("click", () =>{
+    divDeleter();
+    divCreator(curSize);
+    eventmaker();
+})
+
+var curSize = 16;
+clear.textContent = "Clear";
+
+buttonContainer.appendChild(clear);

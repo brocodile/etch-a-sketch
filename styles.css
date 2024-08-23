@@ -16,7 +16,7 @@ h1{
 #container{
     display: flex;
     justify-content: center;
-    gap: 100px;
+    gap: 200px;
 }
 #color-container{
     border: 2px solid grey;
@@ -30,4 +30,15 @@ h1{
     height: 32px;
     width: 32px;
     border: 1px solid black;
+}
+
+#controllers{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+}
+
+button{
+    padding: 10px 5px;
 }
