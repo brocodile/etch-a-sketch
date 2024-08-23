@@ -52,7 +52,7 @@ let divArray = document.querySelectorAll(".colordiv");
 function eventmaker(){
     divArray.forEach((divs) => {
         divs.addEventListener("mousemove", () => {
-            divs.style["background-color"] = "yellow";
+            divs.style["background-color"] = "purple";
         })
     });
 }
