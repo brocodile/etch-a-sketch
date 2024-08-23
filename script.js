@@ -1,3 +1,4 @@
+// Container
 const container = document.querySelector("#container");
 const buttonContainer = document.createElement('div');
 const divContainer = document.createElement('div');
@@ -8,12 +9,13 @@ divContainer.setAttribute("id", "color-container");
 container.appendChild(buttonContainer);
 container.appendChild(divContainer);
 
+// buttons
+
+// resize button
 const resButton = document.createElement('button');
-resButton.textContent = "Grid Size";
-buttonContainer.appendChild(resButton);
 
 resButton.addEventListener("click", () => {
-    var gsize = parseInt(prompt("Enter New Grid Size (less than 100)"));
+    let gsize = parseInt(prompt("Enter New Grid Size (less than 100)"));
     curSize = gsize;
     while(gsize > 100){
         gsize = parseInt(prompt("Enter New Grid Size (less than 100)"));
@@ -22,23 +24,28 @@ resButton.addEventListener("click", () => {
     divCreator(gsize);
     
 });
-function divDeleter(){
-    divArray.forEach((divs) => {
-        divs.remove();
-      });
-}
+resButton.textContent = "Grid Size";
+buttonContainer.appendChild(resButton);
 
-function blockSize(size){
-    var width = 512/size;
-    divArray.forEach((divs) => {
-        divs.style["width"] = String(width) + 'px';
-        divs.style["height"] = String(width) + 'px';
-        })
-}
+// clear button
+const clear = document.createElement('button');
+clear.addEventListener("click", () =>{
+    divDeleter();
+    divCreator(curSize);
+    eventmaker();
+})
+clear.textContent = "Clear";
 
-function divCreator(size){
-    for(var i = 0; i < size; i++){
-        for(var j = 0; j < size; j++){
+buttonContainer.appendChild(clear);
+
+// div creators
+
+
+
+// creates a div grid of variable size
+function divCreator(size){ 
+    for(let i = 0; i < size; i++){
+        for(let j = 0; j < size; j++){
             const div = document.createElement('div');
             div.setAttribute('class', 'colordiv');
             divContainer.appendChild(div);
@@ -49,7 +56,23 @@ function divCreator(size){
     eventmaker();
 }
 
-let divArray = document.querySelectorAll(".colordiv");
+// sets a single block size
+function blockSize(size){
+    let width = 512/size;
+    divArray.forEach((divs) => {
+        divs.style["width"] = String(width) + 'px';
+        divs.style["height"] = String(width) + 'px';
+        })
+}
+
+// deletes current div boxes
+function divDeleter(){
+    divArray.forEach((divs) => {
+        divs.remove();
+      });
+}
+
+// adds event listner to every div; essential to reassign the newly created grid
 function eventmaker(){
     divArray.forEach((divs) => {
         divs.addEventListener("mousemove", () => {
@@ -57,23 +80,18 @@ function eventmaker(){
         })
     });
 }
+
+// creates a new nodeList for new blocks
 function divArrayMaker(){
     divArray = document.querySelectorAll(".colordiv");
 }
 
 
+// Normal Execution
+
+let divArray = document.querySelectorAll(".colordiv");
 divCreator(16);
+
 eventmaker();
+let curSize = 16;
 
-
-const clear = document.createElement('button');
-clear.addEventListener("click", () =>{
-    divDeleter();
-    divCreator(curSize);
-    eventmaker();
-})
-
-var curSize = 16;
-clear.textContent = "Clear";
-
-buttonContainer.appendChild(clear);
