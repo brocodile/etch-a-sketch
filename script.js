@@ -6,3 +6,10 @@ for(var i = 0; i < 16; i++){
         container.appendChild(div);
     }
 }
+
+const divArray = document.querySelectorAll(".colordiv");
+divArray.forEach((divs) => {
+    divs.addEventListener("mousemove", () => {
+        divs.style["background-color"] = "yellow";
+    })
+  });
